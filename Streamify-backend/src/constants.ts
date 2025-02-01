@@ -6,7 +6,7 @@ export const METRICS = {
   },
   activeUsers: {
     title: "Active Users",
-    value: 5678104560,
+    value: 567810456,
     iconUrl: "/UsersThreeActiveFill.png",
   },
   totalStreams: {
@@ -28,8 +28,18 @@ export const METRICS = {
 };
 
 export const USER_GROWTH = [
-  85000000, 92000000, 87000000, 93000000, 91000000, 94000000, 88000000,
-  96000000, 89000000, 95000000, 92000000, 91000000,
+  { totalUsers: 100000000, activeUsers: 48000000 },
+  { totalUsers: 105000000, activeUsers: 50000000 },
+  { totalUsers: 95000000, activeUsers: 47000000 },
+  { totalUsers: 105000000, activeUsers: 51000000 },
+  { totalUsers: 100000000, activeUsers: 48000000 },
+  { totalUsers: 110000000, activeUsers: 52000000 },
+  { totalUsers: 95000000, activeUsers: 46000000 },
+  { totalUsers: 110000000, activeUsers: 53000000 },
+  { totalUsers: 100000000, activeUsers: 49000000 },
+  { totalUsers: 105000000, activeUsers: 51000000 },
+  { totalUsers: 100000000, activeUsers: 49000000 },
+  { totalUsers: 110000000, activeUsers: 53000000 },
 ];
 
 export const REVENUE_DISTRIBUTION = {
