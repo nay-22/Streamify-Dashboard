@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+#root {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+@theme {
+  --color-dark-bg-secondary: #2e2e2e;
+  --color-dark-bg-primary: #212121;
+
+  --color-dark-text-secondary: #FFFFFF;
+  --color-dark-text-primary: #FFFFFF;
+
+  --color-metric-card: linear-gradient(180deg, #6A0E58 0%, #2A0476 100%);
+}
