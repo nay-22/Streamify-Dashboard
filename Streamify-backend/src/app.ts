@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import cors from "cors";
 
 import {
   METRICS,
@@ -12,6 +13,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+const corsOptions = {
+  origin: "*", // Allow all origins, or replace with specific domain(s)
+  methods: "GET,POST,PUT,DELETE", // Allowed HTTP methods
+  allowedHeaders: "Content-Type,Authorization", // Allowed headers
+  credentials: true, // If you're using cookies or authentication tokens
+};
+
+app.use(cors(corsOptions));
 
 app.get("/", (_, res: Response) => {
   res.send("Hello World!");

@@ -1,11 +1,29 @@
 export const METRICS = {
-  totalUsers: 1200000000,
-  activeUsers: 567000000,
-  totalStreams: 120000000,
-  revenue: 14000000000,
+  totalUsers: {
+    title: "Total Users",
+    value: 1289126000,
+    iconUrl: "/UsersThreeFill.png",
+  },
+  activeUsers: {
+    title: "Active Users",
+    value: 5678104560,
+    iconUrl: "/UsersThreeActiveFill.png",
+  },
+  totalStreams: {
+    title: "Total Streams",
+    value: 129648000,
+    iconUrl: "/MusicFill.png",
+  },
+  revenue: {
+    title: "Revenue",
+    value: 14094570000,
+    iconUrl: "/DollarGreenFill.png",
+  },
   topArtist: {
-    name: "Bruno Mars",
-    monthlyActiveListeners: 86000000,
+    title: "Top Artist",
+    value: "Bruno Mars",
+    valueIconUrl: "/TrendingFill.png",
+    iconUrl: "/UserArtist.png",
   },
 };
 
