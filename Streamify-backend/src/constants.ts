@@ -28,45 +28,73 @@ export const METRICS = {
 };
 
 export const USER_GROWTH = [
-  { totalUsers: 100000000, activeUsers: 48000000 },
-  { totalUsers: 105000000, activeUsers: 50000000 },
-  { totalUsers: 95000000, activeUsers: 47000000 },
-  { totalUsers: 105000000, activeUsers: 51000000 },
-  { totalUsers: 100000000, activeUsers: 48000000 },
-  { totalUsers: 110000000, activeUsers: 52000000 },
-  { totalUsers: 95000000, activeUsers: 46000000 },
-  { totalUsers: 110000000, activeUsers: 53000000 },
-  { totalUsers: 100000000, activeUsers: 49000000 },
-  { totalUsers: 105000000, activeUsers: 51000000 },
-  { totalUsers: 100000000, activeUsers: 49000000 },
-  { totalUsers: 110000000, activeUsers: 53000000 },
+  { totalUsers: 1_100_000_000, activeUsers: 883_000_000 },
+  { totalUsers: 1_105_000_000, activeUsers: 760_000_000 },
+  { totalUsers: 1_095_000_000, activeUsers: 887_000_000 },
+  { totalUsers: 1_085_000_000, activeUsers: 971_000_000 },
+  { totalUsers: 1_100_000_000, activeUsers: 748_000_000 },
+  { totalUsers: 1_010_000_000, activeUsers: 802_000_000 },
+  { totalUsers: 995_000_000, activeUsers: 816_000_000 },
+  { totalUsers: 1_110_000_000, activeUsers: 653_000_000 },
+  { totalUsers: 1_100_000_000, activeUsers: 989_000_000 },
+  { totalUsers: 1_105_000_000, activeUsers: 891_000_000 },
+  { totalUsers: 1_100_000_000, activeUsers: 769_000_000 },
+  { totalUsers: 1_110_000_000, activeUsers: 973_000_000 },
 ];
 
 export const REVENUE_DISTRIBUTION = {
-  ads: 4500000000,
-  subscription: 7500000000,
+  ads: {
+    name: "Ads",
+    value: 2400000000,
+    color: "#0088FE",
+  },
+  subscriptions: {
+    name: "Subscription",
+    value: 7500000000,
+    color: "#00C49F",
+  },
+  events: {
+    name: "Events",
+    value: 1100000000,
+    color: "#FFBB28",
+  },
+  promotions: {
+    name: "Promotions",
+    value: 500000000,
+    color: "#FF8042",
+  },
+  misc: {
+    name: "Misc",
+    value: 230000000,
+    color: "#4B8B4B",
+  },
 };
 
 export const TOP_5_STREAMS = [
   {
     name: "Song A",
     streamCount: 2100000000,
+    color: "#006699",
   },
   {
     name: "Song B",
     streamCount: 1900000000,
+    color: "#2A7F10",
   },
   {
     name: "Song C",
     streamCount: 1700000000,
+    color: "#99804D",
   },
   {
     name: "Song D",
     streamCount: 1500000000,
+    color: "#009699",
   },
   {
     name: "Song E",
     streamCount: 1300000000,
+    color: "#5A4099",
   },
 ];
 
