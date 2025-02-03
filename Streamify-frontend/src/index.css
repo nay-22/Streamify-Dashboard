@@ -11,9 +11,10 @@ button:hover {
 @theme {
   --color-dark-bg-secondary: #2e2e2e;
   --color-dark-bg-primary: #212121;
+  --color-dark-bg-tertiary: #4B4B4B;
 
-  --color-dark-text-secondary: #FFFFFF;
   --color-dark-text-primary: #FFFFFF;
+  --color-dark-text-secondary: #FFFFFF;
 
   --color-metric-card: linear-gradient(180deg, #6A0E58 0%, #2A0476 100%);
 }
