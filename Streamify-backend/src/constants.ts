@@ -72,27 +72,27 @@ export const REVENUE_DISTRIBUTION = {
 
 export const TOP_5_STREAMS = [
   {
-    name: "Song A",
+    name: "STAR WALKIN - Lil Nas'",
     streamCount: 2100000000,
     color: "#006699",
   },
   {
-    name: "Song B",
+    name: "POWER G-DRAGON",
     streamCount: 1900000000,
     color: "#2A7F10",
   },
   {
-    name: "Song C",
+    name: "Daylight - David Kushner",
     streamCount: 1700000000,
     color: "#99804D",
   },
   {
-    name: "Song D",
+    name: "Middle Of The Night - Elle Duhe",
     streamCount: 1500000000,
     color: "#009699",
   },
   {
-    name: "Song E",
+    name: "Top or Cliff - KIMSEJONG",
     streamCount: 1300000000,
     color: "#5A4099",
   },
