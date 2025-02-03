@@ -1,3 +1,4 @@
+import useStreamify from "../hooks/useStreamify";
 import { AnchorType, MetricCardProps } from "../types";
 
 const MetricCard = ({
@@ -7,6 +8,9 @@ const MetricCard = ({
   valueIconUrl,
   anchor,
 }: MetricCardProps) => {
+  const { windowSize } = useStreamify();
+  const { width } = windowSize;
+
   const generateValueIconClassName = (anchor?: AnchorType): string => {
     let className = "absolute w-6 ";
     switch (anchor) {
@@ -29,14 +33,28 @@ const MetricCard = ({
     return className.trim();
   };
 
+  const getMetricTitleFontSize = (): string => {
+    return width < 500 ? "text-md" : "text-xl";
+  };
+
+  const getMetricPadding = (): string => {
+    return width < 400 ? "p-2" : "p-4";
+  };
+
+  const getMetricValueFontSize = (): string => {
+    return width < 400 ? "text-[1.2em]" : width < 550 ? "text-2xl" : "text-4xl";
+  };
+
   return (
-    <div className="w-72 min-h-32 p-2 rounded-2xl bg-gradient-to-b from-[#6A0E58] to-[#2A0476] flex flex-col justify-between">
+    <div className={`w-full min-h-36 ${getMetricPadding()} rounded-2xl bg-gradient-to-b from-[#6A0E58] to-[#2A0476] flex flex-col justify-between`}>
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold">{title}</h2>
+        <h2 className={`${getMetricTitleFontSize()} font-bold`}>{title}</h2>
         {iconUrl && <img src={iconUrl} alt="" className="w-5" />}
       </div>
       <div className="flex-grow flex items-center justify-center relative">
-        <h1 className="text-[2.3em] font-black overflow-hidden text-ellipsis whitespace-nowrap">
+        <h1
+          className={`${getMetricValueFontSize()} font-black overflow-hidden text-ellipsis whitespace-nowrap`}
+        >
           {value}
         </h1>
         {valueIconUrl && (
