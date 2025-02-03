@@ -7,7 +7,7 @@ export type Metrics = {
       valueIconUrl?: string;
     };
   };
-}
+};
 
 export type MonthlyUserStats = {
   totalUsers: number;
@@ -19,7 +19,22 @@ export type UserGrowth = {
 };
 
 export type TopStreams = {
-  topFiveStreams: Stream[];
+  topFiveStreams: StreamItem[];
 };
 
-export type Stream = { name: string; streamCount: number; color: string };
+export type StreamItem = { name: string; streamCount: number; color: string };
+
+export type RecentStreams = {
+  recents: Stream[];
+  totalLength: number;
+};
+
+export type Stream = {
+  "Song Name": string;
+  "Artist": string;
+  "Date Streamed": string;
+  "Stream Count": number;
+  "User ID": string;
+  "Revenue Source": string;
+  "Revenue Generated": number;
+};
