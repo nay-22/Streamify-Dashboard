@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { RECENTS_URL } from "../constants";
 import { useFetch } from "../hooks";
 import useStreamify from "../hooks/useStreamify";
@@ -8,15 +8,17 @@ import Paginator from "./Paginator";
 import FilterFill from "../../public/FilterFill.png";
 import FilterForm from "./FilterForm";
 import Modal from "./Modal";
+import { RecentStreamsQuery } from "../types";
 
-export type RecentStreamsQuery = {
-  page?: number | undefined;
-  limit?: number | undefined;
-  artistOrSong?: string | undefined;
-  sort?: string | undefined;
-};
-
-const RecentsTable = () => {
+/**
+ * RecentsTable: Functional component that fetches and displays detailed information on the
+ * recent streams in a tabular format.
+ * 
+ * It provides support for pagination as well as filtration/sorting criteria for fetching the
+ * records.
+ * @returns A JSX element representing the Recent Streams section of the Streamify Dashboard.
+ */
+const RecentsTable: FC = () => {
   const { data, query, updateQuery, addQuery, isLoading, error } = useFetch<
     RecentStreams,
     RecentStreamsQuery

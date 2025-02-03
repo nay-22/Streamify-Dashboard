@@ -1,5 +1,12 @@
 import { toCommaSeperatedString } from "../../../utils";
 
+/**
+ * CustomTooltip: Functional component that renders a custom tooltip
+ * for the TopStreamChart with detailed and better formatted info.
+ * 
+ * @returns A JSX element representing the tooltip with user data if
+ *          active; otherwise, it returns null
+ */
 const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
     return (

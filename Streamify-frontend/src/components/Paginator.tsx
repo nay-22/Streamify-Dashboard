@@ -2,52 +2,32 @@ import { useEffect, useState } from "react";
 import LeftArrowFill from "../../public/LeftArrowFillDark.png";
 import RightArrowFill from "../../public/RightArrowFillDark.png";
 import { useScreenSize } from "../hooks";
+import { PaginatorProps } from "../types";
+import { generatePages, generateVisiblePages } from "../utils";
 
-export type PaginatorProps = {
-  dataLength: number;
-  limit: number;
-  toPage: (pageNo: number) => void;
-  onNext: () => void;
-  onPrev: () => void;
-  onLimitChange: (limit: number) => void;
-  disableControls: boolean;
-};
-
-const generatePages = (length: number, limit: number): number[] => {
-  return [...Array(Math.ceil(length / limit)).keys()].map((k) => k + 1);
-};
-
-const generateVisiblePages = (
-  totalPages: number,
-  currPage: number
-): (number | string)[] => {
-  if (totalPages <= 7) return [...Array(totalPages)].map((_, i) => i + 1);
-
-  if (currPage <= 4) return [1, 2, 3, 4, 5, "...", totalPages];
-  if (currPage >= totalPages - 3)
-    return [
-      1,
-      "...",
-      totalPages - 4,
-      totalPages - 3,
-      totalPages - 2,
-      totalPages - 1,
-      totalPages,
-    ];
-
-  return [
-    1,
-    "...",
-    currPage - 2,
-    currPage - 1,
-    currPage,
-    currPage + 1,
-    currPage + 2,
-    "...",
-    totalPages,
-  ];
-};
-
+/**
+ * Paginator: Functional component that provides navigation controls for paginated data.
+ *
+ * It allows users to navigate through pages of data, change the limit of
+ * items displayed per page, and select/go-to specific pages.
+ *
+ * The component dynamically updates the list of pages based on the total number of items
+ * and the current page state.
+ *
+ * Fully responsive design to accomodate all screen sizes
+ *
+ * @param props Props object for the Paginator
+ * @param props.dataLength Total number of items available for pagination
+ * @param props.limit The initial number of items to display per page
+ * @param props.onNext Callback function to execute when the next page is requested
+ * @param props.onPrev Callback function to execute when the previous page is requested
+ * @param props.toPage Callback function to execute when navigating to a specific page
+ * @param props.onLimitChange Callback function to execute when changing the items limit per page
+ * @param props.disableControls Boolean flag to disable pagination controls (e.g., during loading)
+ *
+ * @returns A JSX element representing the paginator with navigation buttons,
+ *          page selection, and limit selection dropdowns
+ */
 const Paginator = ({
   dataLength,
   limit,

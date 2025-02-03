@@ -14,6 +14,16 @@ import { UserGrowth } from "../../../types/";
 import CustomTooltip from "./CustomTooltip";
 import CustomLegend from "./CustomLegend";
 
+/**
+ * UserGrowthChart: Functional component displays a chart visualizing user 
+ * growth data over a specified period. 
+ * 
+ * It utilizes the Recharts library to 
+ * render an area chart that shows both total users and active users by fetching
+ * the data from a specified API endpoint.
+ *
+ * @returns A JSX element representing the user growth chart
+ */
 const UserGrowthChart = () => {
   const { data, isLoading, error } = useFetch<UserGrowth>(USER_GROWTH_URL);
 

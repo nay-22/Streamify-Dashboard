@@ -1,11 +1,15 @@
-import { ReactNode, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
+import { ModalProps } from "../types";
 
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children: ReactNode;
-}
-
+/**
+ * Modal: Functional component that renders a dialog overlay to display content
+ * over the main application interface.
+ * @param props props object for Modal
+ * @param props.isOpen Boolean flag to open/close modal
+ * @param props.onClose Callback function to execute on modal close
+ * @param props.children ReactNode children
+ * @returns A JSX Modal element wrapping the provided children
+ */
 const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement | null>(null);
 

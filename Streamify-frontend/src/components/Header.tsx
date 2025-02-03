@@ -1,9 +1,13 @@
 import Logo from "../assets/logo.png";
 import AccountCircle from "/AccountCircle.png";
 import Switch from "./Switch";
-import { useState } from "react";
+import { FC, useState } from "react";
 
-const Header = () => {
+/**
+ * Header: Functional component that displays application logo and title.
+ * @returns A JSX element representing header of the application
+ */
+const Header: FC = () => {
   const [isDark, setIsDark] = useState<boolean>(false);
 
   const toggleDark = () => {

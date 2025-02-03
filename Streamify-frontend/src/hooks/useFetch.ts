@@ -1,17 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-
-export type Options = {
-  method?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE" | "HEAD";
-  headers?: {
-    [keys: string]: string;
-  };
-  body?: string | null;
-  credentials?: "include" | "omit" | "same-origin";
-};
-
-export type QueryOptions = {
-  [key: string]: string | number;
-};
+import { FetchRequest, Options, QueryOptions } from "../types";
 
 /**
  * A custom react hook for making HTTP request using the in-built fetch API.
@@ -19,7 +7,12 @@ export type QueryOptions = {
  * This hook abstracts of making HTTP requests while providing state management
  * for data, loading, and error handling. It supports all HTTP methods along with
  * ability to pass other additional options as well.
+ * 
+ * Only supports JSON.
+ *
+ * TODO: Implement AbortController.
  * @param url URL string
+ * @param queryOptions Query options object
  * @param options Fetch request options object
  * @returns  Array [data, isLoading, error]
  */
@@ -27,15 +20,7 @@ const useFetch = <T, S extends QueryOptions = QueryOptions>(
   url: string,
   queryOptions?: S,
   options: Options = { method: "GET" }
-): {
-  data: T | undefined;
-  query: S | undefined;
-  addQuery: (query: S) => void;
-  deleteQuery: (key: string) => void;
-  updateQuery: (key: string, value: string | number) => void;
-  isLoading: boolean;
-  error: string | null;
-} => {
+): FetchRequest<S, T> => {
   const [data, setData] = useState<T | undefined>(undefined);
   const [query, setQuery] = useState<S | undefined>(queryOptions);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -74,8 +59,8 @@ const useFetch = <T, S extends QueryOptions = QueryOptions>(
   const formattedQuery = useMemo(() => {
     if (!query) return "";
     const searchParams = new URLSearchParams();
-    Object.entries(query).forEach(([key, val]) =>
-      val && searchParams.append(key, String(val))
+    Object.entries(query).forEach(
+      ([key, val]) => val && searchParams.append(key, String(val))
     );
     return `?${searchParams.toString()}`;
   }, [query]);

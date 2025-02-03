@@ -1,10 +1,14 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { RecentStreamsQuery } from "./RecentsTable";
+import { FilterFormProps, RecentStreamsQuery } from "../types";
 
-export type FilterFormProps = {
-  onSubmit: (query: RecentStreamsQuery) => void;
-};
 
+/**
+ * FilterForm: Functional component that enables filter and sort functionalities of recent streams
+ * by forming the relevant query parameters for the URL.
+ * @param props props object for FilterForm
+ * @param props.onSubmit Callback function that accepts RecentStreamQuery object as param
+ * @returns A JSX element serving as filter/sort form for recent streams
+ */
 const FilterForm = ({ onSubmit }: FilterFormProps) => {
   const [query, setQuery] = useState<RecentStreamsQuery>({
     artistOrSong: "",

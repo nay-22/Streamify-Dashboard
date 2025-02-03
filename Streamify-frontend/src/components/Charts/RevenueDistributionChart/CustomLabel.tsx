@@ -1,3 +1,10 @@
+/**
+ * CustomLabel: Functional component for rendering labels for RevenueDistributionChart.
+ * It calculates the position of the label based on the provided attributes.
+ * @returns A JSX element representing a text label positioned according
+ *          to the calculated coordinates. If the percentage is greater than
+ *          5%, it displays the percentage; otherwise, it renders nothing
+ */
 const CustomLabel = (attrs: any) => {
   const { cx, cy, midAngle, innerRadius, outerRadius, percent } = attrs;
   const RADIAN = Math.PI / 180;

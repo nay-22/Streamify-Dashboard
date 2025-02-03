@@ -1,21 +1,16 @@
 import { createContext } from "react";
-import { ScreenSize } from "../types";
+import { StreamifyContextConfig } from "../types";
 import { getScreenSize } from "../utils";
 
-export type StreamifyContextConfig = {
-  screen: ScreenSize;
-  windowSize: {
-    width: number;
-    height: number;
-  };
-};
-
+/**
+ * Create StreamifyContext
+ */
 const StreamifyContext = createContext<StreamifyContextConfig>({
   screen: getScreenSize(window.innerWidth),
   windowSize: {
     width: window.innerWidth,
-    height: window.innerHeight
-  }
+    height: window.innerHeight,
+  },
 });
 
 export default StreamifyContext;

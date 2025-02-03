@@ -9,7 +9,7 @@ import {
 import { useFetch } from "../../../hooks";
 import { REVENUE_URL } from "../../../constants";
 import { capitalize } from "../../../utils";
-import { useState } from "react";
+import { FC, useState } from "react";
 import CustomLabel from "./CustomLabel";
 import ActiveShape from "./ActiveShape";
 import CustomTooltip from "./CutomTooltip";
@@ -27,7 +27,13 @@ export type RevenueData = {
   color: string | "grey";
 };
 
-const RevenueDistributionChart = () => {
+/**
+ * RevenueDistributionChart: Functional component visualizes the distribution of
+ * revenue using a pie chart by the Recharts library.
+ *
+ * @returns A JSX element representing the revenue distribution pie chart
+ */
+const RevenueDistributionChart: FC = () => {
   const { data, isLoading, error } = useFetch<RevenueDistribution>(REVENUE_URL);
   const [activeIndex, setActiveIndex] = useState<number>(-1);
 
@@ -63,7 +69,13 @@ const RevenueDistributionChart = () => {
     }
   };
 
-  const generateLegendPosition = (width: number): {layout: LayoutType, verticalAlign: VerticalAlignmentType, wrapperStyle: {left: string}} => {
+  const generateLegendPosition = (
+    width: number
+  ): {
+    layout: LayoutType;
+    verticalAlign: VerticalAlignmentType;
+    wrapperStyle: { left: string };
+  } => {
     if (width < 510) {
       return {
         layout: "horizontal",

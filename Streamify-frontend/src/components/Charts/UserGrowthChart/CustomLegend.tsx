@@ -1,5 +1,11 @@
 import { Payload } from "recharts/types/component/DefaultLegendContent";
 
+/**
+ * CustomTooltip: Functional component that renders a custom legend
+ * for the UserGrowthChart.
+ *
+ * @returns A JSX element representing the legend
+ */
 const CustomLegend = ({ payload }: { payload: Payload[] } | any) => {
   return (
     <div className="flex items-center justify-center gap-6">

@@ -1,6 +1,17 @@
 import useStreamify from "../hooks/useStreamify";
 import { AnchorType, MetricCardProps } from "../types";
 
+/**
+ * MetricCard: Functional component that accepts key metric details as a props and can display them
+ * on diverse range of devices.
+ * @param props props object for MetricCard
+ * @param props.title Card string title
+ * @param props.iconUrl Card string icon URL
+ * @param props.value Card string/number value
+ * @param props.valueIconUrl Card string icon URL for value
+ * @param props.anchor Card AnchorType for valueIconURL
+ * @returns A JSX element that displays a key metric
+ */
 const MetricCard = ({
   title,
   iconUrl,

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { ScreenSize } from "../types";
+import { ScreenSize, WindowSize } from "../types";
 import { getScreenSize } from "../utils";
 
-type WindowSize = {
-  width: number;
-  height: number;
-};
+const DELAY = 200; // Debounce Delay
 
-const DELAY = 200;
-
+/**
+ * A custom react hook for obtaining window width, height, and generic screen size info
+ * based on current window width.
+ * @returns An object containing ScreenSize and WindowSize
+ */
 const useScreenSize = () => {
   const [windowSize, setWindowSize] = useState<WindowSize>({
     width: window.innerWidth,

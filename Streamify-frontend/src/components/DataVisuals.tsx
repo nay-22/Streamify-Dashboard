@@ -9,6 +9,17 @@ import { Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/scrollbar";
 
+/**
+ * DataVisuals: Functional component that visualizes certain metrics using recharts components.
+ * Metric visualized:
+ *  - User Growth
+ *  - Revenue Distribution
+ *  - Top 5 Streamed Songs
+ * 
+ * The Charts are wrapped using Swiper Carousel Components ensuring responsiveness
+ * to all screen sizes.
+ * @returns A JSX element representing the visual charts section of the Streamify Dashboard
+ */
 const DataVisuals = () => {
   const { windowSize } = useStreamify();
   const { width } = windowSize;

@@ -9,8 +9,24 @@ import { Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import useStreamify from "../hooks/useStreamify";
+import { FC } from "react";
 
-const KeyMetrics = () => {
+/**
+ * KeyMetrics: Functional component that displays the key performance
+ * metrics using KeyMetricCard that is dynamically hydrated using the fetched data. 
+ * Key Metric:
+ *  - Total Users
+ *  - Active Users
+ *  - Total Streams
+ *  - Revenue
+ *  - Top Artist
+ * 
+ * The Cards are wrapped using Swiper Carousel Components ensuring responsiveness
+ * to all screen sizes.
+ * 
+ * @returns A JSX element that represents the key metrics section of the Streamify Dashboard
+ */
+const KeyMetrics: FC = () => {
   const { data, isLoading, error } = useFetch<Metrics>(METRICS_URL);
   const { windowSize } = useStreamify();
   const { width } = windowSize;
