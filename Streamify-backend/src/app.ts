@@ -51,7 +51,50 @@ app.get("/dashboard/visuals/top-5-streams", (_, res: Response) => {
 });
 
 app.get("/dashboard/recents", (req: Request, res: Response) => {
-  const { page, limit } = req.query;
+  const { page, limit, sort, artistOrSong } = req.query;
+
+  // Filter
+  let filteredData = RECENT_STREAMS.filter((item) => {
+    if (artistOrSong) {
+      return item["Song Name"] === artistOrSong || item.Artist === artistOrSong;
+    } else {
+      return item;
+    }
+  });
+
+  // Sort
+  if (sort) {
+    switch (sort) {
+      case "DATE_ASC":
+        filteredData = filteredData.sort(
+          (a, b) =>
+            new Date(a["Date Streamed"]).getTime() -
+            new Date(b["Date Streamed"]).getTime()
+        );
+        break;
+      case "DATE_DSC":
+        filteredData = filteredData.sort(
+          (a, b) =>
+            new Date(b["Date Streamed"]).getTime() -
+            new Date(a["Date Streamed"]).getTime()
+        );
+        break;
+      case "STREAM_COUNT_ASC":
+        filteredData = filteredData.sort(
+          (a, b) => a["Stream Count"] - b["Stream Count"]
+        );
+        break;
+      case "STREAM_COUNT_DSC":
+        filteredData = filteredData.sort(
+          (a, b) => b["Stream Count"] - a["Stream Count"]
+        );
+        break;
+      default:
+        break;
+    }
+  }
+
+  // Paginate
   if (!(page && limit)) {
     res.status(404).send({ err: "Page or/and limit missing" });
     return;
@@ -62,10 +105,11 @@ app.get("/dashboard/recents", (req: Request, res: Response) => {
   const start = (p - 1) * l;
   const end = start + l;
 
-  const paginatedData = RECENT_STREAMS.slice(start, end);
+  const paginatedData = filteredData.slice(start, end);
 
   res.send({
     recents: paginatedData,
+    totalLength: filteredData.length,
   });
 });
 
