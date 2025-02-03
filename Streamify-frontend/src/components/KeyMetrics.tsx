@@ -5,9 +5,9 @@ import { METRICS_URL } from "../constants";
 import { AnchorType, Metrics } from "../types";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Scrollbar } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 import useStreamify from "../hooks/useStreamify";
 
 const KeyMetrics = () => {
@@ -38,10 +38,10 @@ const KeyMetrics = () => {
             <Swiper
               slidesPerView={slidesPerView}
               spaceBetween={30}
-              pagination={{
-                clickable: true,
+              scrollbar={{
+                hide: true
               }}
-              modules={[Pagination]}
+              modules={[Scrollbar]}
             >
               {Object.entries(data.metrics).map(([key, metric]) => (
                 <SwiperSlide key={`${key}-${metric.title}-${metric.value}`}>

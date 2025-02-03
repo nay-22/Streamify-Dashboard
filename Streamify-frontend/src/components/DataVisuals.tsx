@@ -5,9 +5,9 @@ import UserGrowthChart from "./Charts/UserGrowthChart";
 import useStreamify from "../hooks/useStreamify";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Scrollbar } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 const DataVisuals = () => {
   const { windowSize } = useStreamify();
@@ -32,10 +32,10 @@ const DataVisuals = () => {
       <Swiper
         slidesPerView={slidesPerView}
         spaceBetween={30}
-        pagination={{
-          clickable: true,
+        scrollbar={{
+          hide: true
         }}
-        modules={[Pagination]}
+        modules={[Scrollbar]}
       >
         <SwiperSlide>
           <ChartCard title="User Growth">
