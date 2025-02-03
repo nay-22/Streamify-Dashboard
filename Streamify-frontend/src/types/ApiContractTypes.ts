@@ -8,3 +8,18 @@ export type Metrics = {
     };
   };
 }
+
+export type MonthlyUserStats = {
+  totalUsers: number;
+  activeUsers: number;
+};
+
+export type UserGrowth = {
+  userGrowth: MonthlyUserStats[];
+};
+
+export type TopStreams = {
+  topFiveStreams: Stream[];
+};
+
+export type Stream = { name: string; streamCount: number; color: string };

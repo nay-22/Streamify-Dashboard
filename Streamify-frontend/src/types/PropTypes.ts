@@ -12,3 +12,9 @@ export type MetricCardProps = {
   valueIconUrl?: string;
   anchor?: AnchorType;
 };
+
+export type AreaChartProps = {
+  data: {
+    [key: string]: string | number;
+  }[];
+};
