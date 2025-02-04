@@ -1,15 +1,16 @@
 import { RefObject } from "react";
 import { RecentStreams } from "../../types/ApiContractTypes";
-import withLoaderAndError, {
-  WithLoaderAndErrorProps,
-} from "../../hoc/withLoaderAndError";
+import withLoaderAndError from "../../hoc/withLoaderAndError";
+import { WithLoaderAndErrorProps } from "../../types/PropTypes";
 
 export interface DataTableProps extends WithLoaderAndErrorProps {
+  currPage?: number | undefined;
+  limit?: number | undefined;
   data?: RecentStreams | undefined;
   tableRef: RefObject<HTMLTableElement>;
 }
 
-const DataTable = ({ data, tableRef }: DataTableProps) => {
+const DataTable = ({ currPage, limit, data, tableRef }: DataTableProps) => {
   return (
     data &&
     data.recents &&
@@ -20,6 +21,7 @@ const DataTable = ({ data, tableRef }: DataTableProps) => {
       >
         <thead>
           <tr>
+            <th className="p-1.5">Sr. No.</th>
             {Object.keys(data.recents[0]).map((key) => (
               <th className="p-1.5" key={key}>
                 {key}
@@ -33,6 +35,11 @@ const DataTable = ({ data, tableRef }: DataTableProps) => {
               className="outline-1 outline-slate-400 last:rounded-b-2xl"
               key={`${i}-${item["Song Name"]}-${item["User ID"]}`}
             >
+              {currPage && limit && (
+                <td className="text-center p-1.5" key={`sr-no-${currPage * i}`}>
+                  {limit * (currPage - 1) + i + 1}
+                </td>
+              )}
               {Object.entries(item).map(([key, detail]) => (
                 <td className="text-center p-1.5" key={`${key}-${detail}`}>
                   {detail}

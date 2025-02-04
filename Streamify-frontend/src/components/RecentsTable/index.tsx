@@ -120,6 +120,8 @@ const RecentsTable: FC = () => {
         className={`${theme.background?.secondary} rounded-b-2xl p-0.5 relative`}
       >
         <DataTable
+          currPage={query?.page}
+          limit={query?.limit}
           data={data}
           isLoading={isLoading}
           error={error}
