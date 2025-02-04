@@ -2,28 +2,46 @@ export const METRICS = {
   totalUsers: {
     title: "Total Users",
     value: 1289126000,
-    iconUrl: "/UsersThreeFill.png",
+    iconUrl: {
+      dark: "/UsersThreeFill.png",
+      light: "/UsersThreeFillLight.png"
+    },
   },
   activeUsers: {
     title: "Active Users",
     value: 567810456,
-    iconUrl: "/UsersThreeActiveFill.png",
+    iconUrl: {
+      dark: "/UsersThreeActiveFill.png",
+      light: "/UsersThreeActiveFillLight.png"
+    },
   },
   totalStreams: {
     title: "Total Streams",
     value: 129648000,
-    iconUrl: "/MusicFill.png",
+    iconUrl: {
+      dark: "/MusicFill.png",
+      light: "/MusicFillLight.png"
+    },
   },
   revenue: {
     title: "Revenue",
     value: 14094570000,
-    iconUrl: "/DollarGreenFill.png",
+    iconUrl: {
+      dark: "/DollarGreenFill.png",
+      light: "/DollarGreenFillLight.png"
+    },
   },
   topArtist: {
     title: "Top Artist",
     value: "Bruno Mars",
-    valueIconUrl: "/TrendingFill.png",
-    iconUrl: "/UserArtist.png",
+    valueIconUrl: {
+      dark: "/TrendingFill.png",
+      light: "/TrendingFillLight.png"
+    },
+    iconUrl: {
+      dark: "/UserArtist.png",
+      light: "/UserArtistLight.png"
+    },
   },
 };
 

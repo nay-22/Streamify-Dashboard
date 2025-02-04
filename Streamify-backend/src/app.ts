@@ -14,10 +14,10 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 const corsOptions = {
-  origin: "*", // Allow all origins, or replace with specific domain(s)
-  methods: "GET,POST,PUT,DELETE", // Allowed HTTP methods
-  allowedHeaders: "Content-Type,Authorization", // Allowed headers
-  credentials: true, // If you're using cookies or authentication tokens
+  origin: "*",
+  methods: "GET,POST,PUT,DELETE",
+  allowedHeaders: "Content-Type,Authorization",
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
@@ -27,27 +27,35 @@ app.get("/", (_, res: Response) => {
 });
 
 app.get("/dashboard/metrics", (_, res: Response) => {
-  res.send({
-    metrics: METRICS,
-  });
+  setTimeout(() => {
+    res.send({
+      metrics: METRICS,
+    });
+  }, 3000);
 });
 
 app.get("/dashboard/visuals/user-growth", (_, res: Response) => {
-  res.send({
-    userGrowth: USER_GROWTH,
-  });
+  setTimeout(() => {
+    res.send({
+      userGrowth: USER_GROWTH,
+    });
+  }, 1000);
 });
 
 app.get("/dashboard/visuals/revenue-distribution", (_, res: Response) => {
-  res.send({
-    revenueDistribution: REVENUE_DISTRIBUTION,
-  });
+  setTimeout(() => {
+    res.send({
+      revenueDistribution: REVENUE_DISTRIBUTION,
+    });
+  }, 2500);
 });
 
 app.get("/dashboard/visuals/top-5-streams", (_, res: Response) => {
-  res.send({
-    topFiveStreams: TOP_5_STREAMS,
-  });
+  setTimeout(() => {
+    res.send({
+      topFiveStreams: TOP_5_STREAMS,
+    });
+  }, 500);
 });
 
 app.get("/dashboard/recents", (req: Request, res: Response) => {
@@ -107,10 +115,12 @@ app.get("/dashboard/recents", (req: Request, res: Response) => {
 
   const paginatedData = filteredData.slice(start, end);
 
-  res.send({
-    recents: paginatedData,
-    totalLength: filteredData.length,
-  });
+  setTimeout(() => {
+    res.send({
+      recents: paginatedData,
+      totalLength: filteredData.length,
+    });
+  }, 2000);
 });
 
 app.listen(PORT, () => {
