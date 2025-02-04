@@ -53,3 +53,8 @@ export type PaginatorProps = {
   onLimitChange: (limit: number) => void;
   disableControls: boolean;
 };
+
+export interface WithLoaderAndErrorProps {
+  isLoading: boolean;
+  error?: string | null;
+}
