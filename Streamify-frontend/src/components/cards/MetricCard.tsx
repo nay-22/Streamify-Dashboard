@@ -1,6 +1,6 @@
-import { useTheme } from "../hooks";
-import useStreamify from "../hooks/useStreamify";
-import { AnchorType, MetricCardProps } from "../types";
+import { useTheme } from "../../hooks";
+import useStreamify from "../../hooks/useStreamify";
+import { AnchorType, MetricCardProps, ThemeMode } from "../../types";
 
 /**
  * MetricCard: Functional component that accepts key metric details as a props and can display them
@@ -22,7 +22,7 @@ const MetricCard = ({
 }: MetricCardProps) => {
   const theme = useTheme();
 
-  const { windowSize } = useStreamify();
+  const { windowSize, themeMode } = useStreamify();
   const { width } = windowSize;
 
   const generateValueIconClassName = (anchor?: AnchorType): string => {
@@ -63,7 +63,7 @@ const MetricCard = ({
     <div className={`w-full min-h-36 ${getMetricPadding()} rounded-2xl ${theme.background?.accent} flex flex-col justify-between`}>
       <div className="flex items-center justify-between">
         <h2 className={`${getMetricTitleFontSize()} font-bold`}>{title}</h2>
-        {iconUrl && <img src={iconUrl} alt="" className="w-5" />}
+        {iconUrl && <img src={themeMode === ThemeMode.DARK ? iconUrl.dark : iconUrl.light} alt="" className="w-5" />}
       </div>
       <div className="flex-grow flex items-center justify-center relative">
         <h1
@@ -73,7 +73,7 @@ const MetricCard = ({
         </h1>
         {valueIconUrl && (
           <img
-            src={valueIconUrl}
+            src={themeMode === ThemeMode.DARK ? valueIconUrl.dark : valueIconUrl.light}
             alt=""
             className={generateValueIconClassName(anchor)}
           />
