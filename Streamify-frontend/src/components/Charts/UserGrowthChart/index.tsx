@@ -9,8 +9,8 @@ import {
 } from "recharts";
 import { toClosestUnit } from "../../../utils";
 import { USER_GROWTH_URL, MONTHS } from "../../../constants";
-import { useFetch } from "../../../hooks";
-import { UserGrowth } from "../../../types/";
+import { useFetch, useStreamify } from "../../../hooks";
+import { ThemeMode, UserGrowth } from "../../../types/";
 import CustomTooltip from "./CustomTooltip";
 import CustomLegend from "./CustomLegend";
 
@@ -27,19 +27,25 @@ import CustomLegend from "./CustomLegend";
 const UserGrowthChart = () => {
   const { data, isLoading, error } = useFetch<UserGrowth>(USER_GROWTH_URL);
 
+  const { themeMode } = useStreamify();
+
+  const c1 = themeMode === ThemeMode.LIGHT ? '#5a4eb0' : '#8884d8';
+  const c2 = themeMode === ThemeMode.LIGHT ? '#388e3c' : '#82ca9d ';
+  const stroke = themeMode === ThemeMode.LIGHT ? 'black' : 'white'
+
   const generateTotalUsersArray = (): number[] => {
     return data
       ? [...Array(data.userGrowth.length).keys()].map(
-          (_, idx) => data?.userGrowth[idx].totalUsers
-        )
+        (_, idx) => data?.userGrowth[idx].totalUsers
+      )
       : [];
   };
 
   const generateActiveUsersArray = (): number[] => {
     return data
       ? [...Array(data.userGrowth.length).keys()].map(
-          (_, idx) => data?.userGrowth[idx].activeUsers
-        )
+        (_, idx) => data?.userGrowth[idx].activeUsers
+      )
       : [];
   };
 
@@ -52,10 +58,10 @@ const UserGrowthChart = () => {
     const totalUsers = generateTotalUsersArray();
     return data
       ? [...Array(activeUsers.length).keys()].map((_, idx) => ({
-          name: MONTHS[idx],
-          "Active Users": activeUsers[idx],
-          "Total Users": totalUsers[idx],
-        }))
+        name: MONTHS[idx],
+        "Active Users": activeUsers[idx],
+        "Total Users": totalUsers[idx],
+      }))
       : [];
   };
 
@@ -69,29 +75,29 @@ const UserGrowthChart = () => {
       >
         <defs>
           <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
-            <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+            <stop offset="5%" stopColor={c1} stopOpacity={0.8} />
+            <stop offset="95%" stopColor={c1} stopOpacity={0} />
           </linearGradient>
           <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
-            <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
+            <stop offset="5%" stopColor={c2} stopOpacity={0.8} />
+            <stop offset="95%" stopColor={c2} stopOpacity={0} />
           </linearGradient>
         </defs>
-        <XAxis dataKey="name" stroke="white" />
-        <YAxis tickFormatter={(v) => toClosestUnit(v)} stroke="white" />
+        <XAxis dataKey="name" stroke={stroke} />
+        <YAxis tickFormatter={(v) => toClosestUnit(v)} stroke={stroke} />
         <Legend verticalAlign="bottom" content={<CustomLegend />} />
         <Tooltip content={<CustomTooltip />} />
         <Area
           type="monotone"
           dataKey="Total Users"
-          stroke="#8884d8"
+          stroke={c1}
           fillOpacity={1}
           fill="url(#colorUv)"
         />
         <Area
           type="monotone"
           dataKey="Active Users"
-          stroke="#82ca9d"
+          stroke={c2}
           fillOpacity={1}
           fill="url(#colorPv)"
         />

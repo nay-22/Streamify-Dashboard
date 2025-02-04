@@ -1,16 +1,4 @@
-import { createContext } from "react";
-import { StreamifyContextConfig } from "../types";
-import { getScreenSize } from "../utils";
+import StreamifyContext from "./StreamifyContext";
+import ThemeContext from "./ThemeContext";
 
-/**
- * Create StreamifyContext
- */
-const StreamifyContext = createContext<StreamifyContextConfig>({
-  screen: getScreenSize(window.innerWidth),
-  windowSize: {
-    width: window.innerWidth,
-    height: window.innerHeight,
-  },
-});
-
-export default StreamifyContext;
+export { StreamifyContext, ThemeContext };

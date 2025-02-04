@@ -8,9 +8,9 @@ import {
   YAxis,
 } from "recharts";
 import { TOP_5_STREAMS_URL } from "../../../constants";
-import { useFetch } from "../../../hooks";
+import { useFetch, useStreamify } from "../../../hooks";
 import { toClosestUnit } from "../../../utils";
-import { TopStreams } from "../../../types";
+import { ThemeMode, TopStreams } from "../../../types";
 import CustomTooltip from "./CustomTooltip";
 
 /**
@@ -20,14 +20,16 @@ import CustomTooltip from "./CustomTooltip";
  */
 const TopStreamChart = () => {
   const { data, isLoading, error } = useFetch<TopStreams>(TOP_5_STREAMS_URL);
+  const { themeMode } = useStreamify();
+  const stroke = themeMode === ThemeMode.LIGHT ? 'black' : 'white'
 
   return isLoading ? (
     <p>Loading...</p>
   ) : data ? (
     <ResponsiveContainer height={250} width={"100%"}>
       <BarChart data={data.topFiveStreams}>
-        <XAxis dataKey={"name"} stroke="white" tick={false} />
-        <YAxis tickFormatter={(v) => toClosestUnit(v, 1)} stroke="white" />
+        <XAxis dataKey={"name"} stroke={stroke} tick={false} />
+        <YAxis tickFormatter={(v) => toClosestUnit(v, 1)} stroke={stroke} />
         <Tooltip content={<CustomTooltip />} />
         <Bar dataKey="streamCount">
           {data.topFiveStreams.map((item) => (

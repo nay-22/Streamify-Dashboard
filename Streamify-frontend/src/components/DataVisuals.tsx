@@ -44,7 +44,8 @@ const DataVisuals = () => {
         slidesPerView={slidesPerView}
         spaceBetween={30}
         scrollbar={{
-          hide: true
+          draggable: true,
+          dragSize: 'auto'
         }}
         modules={[Scrollbar]}
       >

@@ -1,6 +1,6 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { RECENTS_URL } from "../constants";
-import { useFetch } from "../hooks";
+import { useFetch, useTheme } from "../hooks";
 import useStreamify from "../hooks/useStreamify";
 import { RecentStreams } from "../types/ApiContractTypes";
 import Paginator from "./Paginator";
@@ -31,6 +31,8 @@ const RecentsTable: FC = () => {
 
   const { windowSize } = useStreamify();
   const { width } = windowSize;
+  
+  const theme = useTheme();
 
   const tableContainerRef = useRef<HTMLDivElement>(null);
   const tableRef = useRef<HTMLTableElement>(null);
@@ -46,7 +48,6 @@ const RecentsTable: FC = () => {
 
       tableContainerRef.current.style.minHeight = `${lastHeightRef.current}px`;
     }
-    console.log(data?.recents);
   }, [data]);
 
   const fetchNext = () => {
@@ -87,8 +88,8 @@ const RecentsTable: FC = () => {
 
   return (
     <div className={generateContainerClassName(width)}>
-      <div className="bg-dark-bg-tertiary px-4 py-2 rounded-t-2xl flex items-center justify-between">
-        <h3 className="text-lg">Recents</h3>
+      <div className={`${theme.background?.tertiary} px-4 py-2 rounded-t-2xl flex items-center justify-between`}>
+        <h3 className="text-lg font-semibold">Recents</h3>
         {data && (
           <Paginator
             disableControls={isLoading}
@@ -112,10 +113,10 @@ const RecentsTable: FC = () => {
           }px`,
           overflow: "auto",
         }}
-        className="bg-dark-bg-secondary rounded-b-2xl p-0.5 relative"
+        className={`${theme.background?.secondary} rounded-b-2xl p-0.5 relative`}
       >
         {isLoading ? (
-          <div className="absolute inset-0 flex items-center justify-center bg-dark-bg-secondary p-4">
+          <div className={`absolute inset-0 flex items-center justify-center ${theme.background?.secondary} p-4`}>
             Loading...
           </div>
         ) : data && data.recents && data.recents.length > 0 ? (

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import StreamifyContext from "../context";
+import { StreamifyContext } from "../context";
 
 /**
  * A custom react hook that returns StreamifyContext object.

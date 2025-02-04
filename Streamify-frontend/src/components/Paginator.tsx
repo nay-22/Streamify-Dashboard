@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import LeftArrowFill from "../../public/LeftArrowFillDark.png";
 import RightArrowFill from "../../public/RightArrowFillDark.png";
-import { useScreenSize } from "../hooks";
+import { useScreenSize, useTheme } from "../hooks";
 import { PaginatorProps } from "../types";
 import { generatePages, generateVisiblePages } from "../utils";
 
@@ -42,6 +42,8 @@ const Paginator = ({
   const [pages, setPages] = useState<number[]>([]);
 
   const { windowSize } = useScreenSize();
+
+  const theme = useTheme();
 
   useEffect(() => {
     setPages(generatePages(dataLength, currLimit));
@@ -99,7 +101,7 @@ const Paginator = ({
                 disabled={disableControls}
                 className={`px-2 py-0 mx-2 ${
                   currPage === k
-                    ? "bg-dark-bg-secondary hover:bg-dark-bg-primary"
+                    ? `${theme.background?.secondary} ${'hover:' + theme.background?.primary}`
                     : "hover:bg-gray-300 hover:text-gray-700"
                 } text-center font-semibold rounded-md`}
               >
@@ -118,8 +120,8 @@ const Paginator = ({
       </button>
 
       {/* Page No. Selection */}
-      <div className="bg-dark-bg-secondary p-1 rounded-md">
-        <label htmlFor="page-no-select" className="p-1 rounded-sm bg-amber-700">
+      <div className={`${theme.background?.secondary} p-1 rounded-md`}>
+        <label htmlFor="page-no-select" className="p-1 rounded-sm bg-amber-600">
           To
         </label>
         <select
@@ -127,7 +129,7 @@ const Paginator = ({
           disabled={disableControls}
           onChange={(e) => fetchPage(parseInt(e.target.value))}
           value={currPage}
-          className="bg-dark-bg-secondary"
+          className={theme.background?.secondary}
         >
           {pages.map((k) => (
             <option key={`page-${k}`} value={k}>
@@ -139,10 +141,10 @@ const Paginator = ({
 
       {/* Limit Selection */}
       {windowSize.width > 465 && (
-        <div className="bg-dark-bg-secondary p-1 rounded-md">
+        <div className={`${theme.background?.secondary} p-1 rounded-md`}>
           <label
             htmlFor="page-limit-select"
-            className="p-1 rounded-sm bg-amber-700"
+            className="p-1 rounded-sm bg-amber-600"
           >
             Limit
           </label>
@@ -151,7 +153,7 @@ const Paginator = ({
             id="page-limit-select"
             onChange={(e) => setPageLimit(parseInt(e.target.value))}
             value={currLimit}
-            className="bg-dark-bg-secondary"
+            className={theme.background?.secondary}
           >
             <option value={5}>5</option>
             <option value={10}>10</option>

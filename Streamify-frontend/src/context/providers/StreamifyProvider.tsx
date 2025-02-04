@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import StreamifyContext from "..";
+import { StreamifyContext } from "..";
 import { StreamifyContextConfig } from "../../types";
 
 /**

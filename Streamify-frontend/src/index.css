@@ -13,8 +13,14 @@ button:hover {
   --color-dark-bg-primary: #212121;
   --color-dark-bg-tertiary: #4B4B4B;
 
+  --color-light-bg-secondary: #E5E5E5;
+  --color-light-bg-primary: #F3F3F3;
+  --color-light-bg-tertiary: #C3C3C3;
+
   --color-dark-text-primary: #FFFFFF;
   --color-dark-text-secondary: #FFFFFF;
+  --color-dark-text-tertairy: #FFFFFF;
+  --color-dark-text-accent: #FFFFFF;
 
   --color-metric-card: linear-gradient(180deg, #6A0E58 0%, #2A0476 100%);
 }

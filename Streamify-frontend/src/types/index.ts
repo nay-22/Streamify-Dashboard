@@ -15,6 +15,7 @@ import {
   TopStreams,
 } from "./ApiContractTypes";
 import { ScreenSize } from "./MediaTypes";
+import { Dispatch, SetStateAction } from "react";
 
 export type Options = {
   method?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE" | "HEAD";
@@ -73,4 +74,23 @@ export type StreamifyContextConfig = {
     width: number;
     height: number;
   };
+  themeMode: ThemeMode;
+  setThemeMode: Dispatch<SetStateAction<ThemeMode>>;
 };
+
+
+export enum ThemeMode {
+  DARK = 'dark', LIGHT = 'light'
+}
+
+export type ThemeType = {
+  primary?: string | undefined;
+  secondary?: string | undefined;
+  tertiary?: string | undefined;
+  accent?: string | undefined
+}
+
+export type ThemeOptions = {
+  text?: ThemeType | undefined;
+  background?: ThemeType | undefined
+}
