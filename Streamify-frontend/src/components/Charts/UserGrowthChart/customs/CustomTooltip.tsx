@@ -1,4 +1,4 @@
-import { toCommaSeperatedString } from "../../../utils";
+import { toCommaSeperatedString } from "../../../../utils";
 
 /**
  * CustomTooltip: Functional component that renders a custom tooltip
