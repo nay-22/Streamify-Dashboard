@@ -3,8 +3,14 @@ export type Metrics = {
     [key: string]: {
       title: string;
       value: string | number;
-      iconUrl?: string;
-      valueIconUrl?: string;
+      iconUrl?: {
+        dark: string;
+        light: string;
+      };
+      valueIconUrl?: {
+        dark: string;
+        light: string;
+      };
     };
   };
 };
@@ -31,10 +37,20 @@ export type RecentStreams = {
 
 export type Stream = {
   "Song Name": string;
-  "Artist": string;
+  Artist: string;
   "Date Streamed": string;
   "Stream Count": number;
   "User ID": string;
   "Revenue Source": string;
   "Revenue Generated": number;
+};
+
+export type RevenueDistribution = {
+  revenueDistribution: { [key: string]: RevenueData };
+};
+
+export type RevenueData = {
+  name: string;
+  value: number;
+  color: string | "grey";
 };

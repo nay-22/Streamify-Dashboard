@@ -11,8 +11,14 @@ export enum AnchorType {
 export type MetricCardProps = {
   title: string;
   value: string | number;
-  iconUrl?: string;
-  valueIconUrl?: string;
+  iconUrl?: {
+    light: string;
+    dark: string;
+  };
+  valueIconUrl?: {
+    light: string;
+    dark: string;
+  };
   anchor?: AnchorType;
 };
 
@@ -22,8 +28,9 @@ export type AreaChartProps = {
   }[];
 };
 
-export type ChartCardProps = {
+export type GenericCardProps = {
   title: string;
+  actions?: ReactNode;
   children?: ReactNode;
 };
 

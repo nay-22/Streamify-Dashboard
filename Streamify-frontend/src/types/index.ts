@@ -2,7 +2,7 @@ import {
   MetricCardProps,
   AnchorType,
   AreaChartProps,
-  ChartCardProps,
+  GenericCardProps,
   FilterFormProps,
   ModalProps,
   PaginatorProps,
@@ -33,6 +33,7 @@ export type QueryOptions = {
 export type FetchRequest<S, T> = {
   data: T | undefined;
   query: S | undefined;
+  refetch: () => void;
   addQuery: (query: S) => void;
   deleteQuery: (key: string) => void;
   updateQuery: (key: string, value: string | number) => void;
@@ -55,7 +56,7 @@ export type {
   FilterFormProps,
   PaginatorProps,
   AreaChartProps,
-  ChartCardProps,
+  GenericCardProps,
   ModalProps,
 };
 
@@ -78,19 +79,23 @@ export type StreamifyContextConfig = {
   setThemeMode: Dispatch<SetStateAction<ThemeMode>>;
 };
 
-
 export enum ThemeMode {
-  DARK = 'dark', LIGHT = 'light'
+  DARK = "dark",
+  LIGHT = "light",
 }
 
 export type ThemeType = {
   primary?: string | undefined;
   secondary?: string | undefined;
   tertiary?: string | undefined;
-  accent?: string | undefined
+  accent?: string | undefined;
+};
+
+export interface BaseThemeOptions {
+  text?: ThemeType | undefined;
+  background?: ThemeType | undefined;
 }
 
-export type ThemeOptions = {
-  text?: ThemeType | undefined;
-  background?: ThemeType | undefined
+export interface ThemeOptions extends BaseThemeOptions {
+  error?: BaseThemeOptions | undefined;
 }
