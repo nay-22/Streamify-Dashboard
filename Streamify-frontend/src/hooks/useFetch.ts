@@ -7,7 +7,7 @@ import { FetchRequest, Options, QueryOptions } from "../types";
  * This hook abstracts of making HTTP requests while providing state management
  * for data, loading, and error handling. It supports all HTTP methods along with
  * ability to pass other additional options as well.
- * 
+ *
  * Only supports JSON.
  *
  * TODO: Implement AbortController.
@@ -65,33 +65,42 @@ const useFetch = <T, S extends QueryOptions = QueryOptions>(
     return `?${searchParams.toString()}`;
   }, [query]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch(
-          `${url}${formattedQuery}`,
-          optionsRef.current
-        );
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        `${url}${formattedQuery}`,
+        optionsRef.current
+      );
 
-        if (!response.ok) {
-          const err = await response.json();
-          throw new Error(`Error: ${err.err}`);
-        }
-
-        const responseData = await response.json();
-        setData(responseData);
-      } catch (err: any) {
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
+      if (!response.ok) {
+        const err = await response.json();
+        throw new Error(`Error: ${err.err}`);
       }
-    };
 
+      const responseData = await response.json();
+      setData(responseData);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, [url, formattedQuery]);
 
-  return { data, query, addQuery, deleteQuery, updateQuery, isLoading, error };
+  return {
+    data,
+    query,
+    refetch: fetchData,
+    addQuery,
+    deleteQuery,
+    updateQuery,
+    isLoading,
+    error,
+  };
 };
 
 export default useFetch;
