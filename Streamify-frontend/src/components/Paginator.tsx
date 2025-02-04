@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import LeftArrowFill from "../../public/LeftArrowFillDark.png";
-import RightArrowFill from "../../public/RightArrowFillDark.png";
+import LeftArrowFill from "/LeftArrowFillDark.png";
+import RightArrowFill from "/RightArrowFillDark.png";
 import { useScreenSize, useTheme } from "../hooks";
 import { PaginatorProps } from "../types";
 import { generatePages, generateVisiblePages } from "../utils";
@@ -47,7 +47,6 @@ const Paginator = ({
 
   useEffect(() => {
     setPages(generatePages(dataLength, currLimit));
-    console.log(currLimit);
   }, [currLimit, dataLength]);
 
   const visiblePages = generateVisiblePages(pages.length, currPage);
