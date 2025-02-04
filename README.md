@@ -8,14 +8,43 @@ A PoC analytics dashboard for music streaming service displaying 3-key sections:
 
 ### Demo
 
-<video controls src="20250204-2151-34.4952908.mp4" title="Streamify Demo"></video>
+<video controls src="https://github.com/user-attachments/assets/24959c74-85a8-4c5c-8abe-0a697da5a10f" title="Streamify Demo"></video>
 
 ## Technologies Used
 
+- TypeScript
 - React
 - Tailwind
 - Recharts
 - Swiper
+
+## Installation
+- ```
+    git clone https://github.com/nay-22/Streamify-Dashboard.git
+    ```
+- **Open two terminals**
+  - On one terminal
+    - ```
+        cd Streamify-backend
+        ```
+    - ```
+        npm install
+        ```
+    - ```
+        npm run dev
+        ```
+  - On other terminal
+    - ```
+        cd Streamify-frontend
+        ```
+    - ```
+        npm install
+        ```
+    - ```
+        npm run dev
+        ```
+- Open the following link on browser
+  [http://localhost:5173](http://localhost:5173)
 
 ## Key Features
 
@@ -25,26 +54,26 @@ A PoC analytics dashboard for music streaming service displaying 3-key sections:
     ```js
     // Conditionally pass light/dark themes as value based on the current mode
     <ThemeProvider value={themeMode === ThemeMode.LIGHT ? lightTheme : darkTheme}>
-    <Dashboard />
+        <Dashboard />
     </ThemeProvider>
     ```
 
 - Uses Custom ThemeOptions to simplify theming. The values then can be passed as properties to style for inline CSS or use in class for tailwindcss.
     ```js
     export type ThemeType = {
-    primary?: string | undefined,
-    secondary?: string | undefined,
-    tertiary?: string | undefined,
-    accent?: string | undefined,
+        primary?: string | undefined,
+        secondary?: string | undefined,
+        tertiary?: string | undefined,
+        accent?: string | undefined,
     };
-
+    
     export interface BaseThemeOptions {
-    text?: ThemeType | undefined;
-    background?: ThemeType | undefined;
+        text?: ThemeType | undefined;
+        background?: ThemeType | undefined;
     }
-
+    
     export interface ThemeOptions extends BaseThemeOptions {
-    error?: BaseThemeOptions | undefined;
+        error?: BaseThemeOptions | undefined;
     }
     ```
 
@@ -86,9 +115,9 @@ A PoC analytics dashboard for music streaming service displaying 3-key sections:
     }
 
     // Then wrap the component with the HOC
-        const DataTable = ({ currPage, limit, data,tableRef }: DataTableProps) => {
-            return <>...</>
-        }
+    const DataTable = ({ currPage, limit, data,tableRef }: DataTableProps) => {
+         return <>...</>
+    }
     export default withLoaderAndError(DataTable);
     ```
 
