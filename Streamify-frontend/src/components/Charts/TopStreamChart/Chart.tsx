@@ -9,11 +9,10 @@ import {
 } from "recharts";
 import { toClosestUnit } from "../../../utils";
 import CustomTooltip from "./customs/CustomTooltip";
-import withLoaderAndError, {
-  WithLoaderAndErrorProps,
-} from "../../../hoc/withLoaderAndError";
+import withLoaderAndError from "../../../hoc/withLoaderAndError";
 import { ThemeMode, TopStreams } from "../../../types";
 import { useStreamify } from "../../../hooks";
+import { WithLoaderAndErrorProps } from "../../../types/PropTypes";
 
 export interface TopStreamChartProps extends WithLoaderAndErrorProps {
   data?: TopStreams;

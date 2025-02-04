@@ -8,7 +8,8 @@ import "swiper/css";
 import "swiper/css/scrollbar";
 import useStreamify from "../../hooks/useStreamify";
 import { FC } from "react";
-import withLoaderAndError, { WithLoaderAndErrorProps } from "../../hoc/withLoaderAndError";
+import withLoaderAndError from "../../hoc/withLoaderAndError";
+import { WithLoaderAndErrorProps } from "../../types/PropTypes";
 
 export interface KeyMetricsProps extends WithLoaderAndErrorProps {
   data?: Metrics;

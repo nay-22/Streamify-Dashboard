@@ -13,7 +13,8 @@ import { ThemeMode, UserGrowth } from "../../../types";
 import { toClosestUnit } from "../../../utils";
 import CustomLegend from "./customs/CustomLegend";
 import CustomTooltip from "./customs/CustomTooltip";
-import withLoaderAndError, { WithLoaderAndErrorProps } from "../../../hoc/withLoaderAndError";
+import withLoaderAndError from "../../../hoc/withLoaderAndError";
+import { WithLoaderAndErrorProps } from "../../../types/PropTypes";
 
 export interface UserGrowthChartProps extends WithLoaderAndErrorProps {
   data?: UserGrowth;

@@ -3,7 +3,6 @@ import { METRICS_URL } from "../../constants";
 import { FC } from "react";
 import KeyMetricsData from "./KeyMetricsData";
 import { Metrics } from "../../types";
-import GenericCard from "../cards/GenericCard";
 
 /**
  * KeyMetrics: Functional component that displays the key performance
