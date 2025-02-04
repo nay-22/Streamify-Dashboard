@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { FilterFormProps, RecentStreamsQuery } from "../types";
-
+import { FilterFormProps, RecentStreamsQuery } from "../../types";
+import { useTheme } from "../../hooks";
 
 /**
  * FilterForm: Functional component that enables filter and sort functionalities of recent streams
@@ -14,6 +14,8 @@ const FilterForm = ({ onSubmit }: FilterFormProps) => {
     artistOrSong: "",
     sort: undefined,
   });
+
+  const theme = useTheme();
 
   const handleSubmit = (e: FormEvent) => {
     onSubmit(query);
@@ -34,8 +36,8 @@ const FilterForm = ({ onSubmit }: FilterFormProps) => {
   };
 
   return (
-    <div className="w-full bg-dark-bg-primary rounded-2xl">
-      <h3 className="bg-dark-bg-tertiary text-2xl p-4 w-full rounded-t-2xl">
+    <div className={`w-full ${theme.background?.primary} rounded-2xl`}>
+      <h3 className={`${theme.background?.tertiary} text-2xl p-4 w-full rounded-t-2xl`}>
         Filter/Sort
       </h3>
       <form>
@@ -101,7 +103,7 @@ const FilterForm = ({ onSubmit }: FilterFormProps) => {
         <div className="px-8 py-4 flex items-center justify-center">
           <button
             onClick={handleSubmit}
-            className="bg-dark-bg-secondary px-4 py-2 rounded-sm outline-amber-500 outline-1"
+            className={`${theme.background?.secondary} px-4 py-2 rounded-sm outline-amber-500 outline-1`}
           >
             Apply
           </button>
