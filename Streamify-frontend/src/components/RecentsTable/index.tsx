@@ -1,19 +1,20 @@
 import { FC, useEffect, useRef, useState } from "react";
-import { RECENTS_URL } from "../constants";
-import { useFetch, useTheme } from "../hooks";
-import useStreamify from "../hooks/useStreamify";
-import { RecentStreams } from "../types/ApiContractTypes";
-import Paginator from "./Paginator";
+import { RECENTS_URL } from "../../constants";
+import { useFetch, useTheme } from "../../hooks";
+import useStreamify from "../../hooks/useStreamify";
+import { RecentStreams } from "../../types/ApiContractTypes";
+import Paginator from "../Paginator";
 
-import FilterFill from "../../public/FilterFill.png";
-import FilterForm from "./FilterForm";
-import Modal from "./Modal";
-import { RecentStreamsQuery } from "../types";
+import FilterFill from "/FilterFill.png";
+import FilterForm from "../forms/FilterForm";
+import Modal from "../Modal";
+import { RecentStreamsQuery } from "../../types";
+import DataTable from "./DataTable";
 
 /**
  * RecentsTable: Functional component that fetches and displays detailed information on the
  * recent streams in a tabular format.
- * 
+ *
  * It provides support for pagination as well as filtration/sorting criteria for fetching the
  * records.
  * @returns A JSX element representing the Recent Streams section of the Streamify Dashboard.
@@ -24,14 +25,14 @@ const RecentsTable: FC = () => {
     RecentStreamsQuery
   >(RECENTS_URL, {
     page: 1,
-    limit: 10,
+    limit: 5,
   });
 
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const { windowSize } = useStreamify();
   const { width } = windowSize;
-  
+
   const theme = useTheme();
 
   const tableContainerRef = useRef<HTMLDivElement>(null);
@@ -69,6 +70,7 @@ const RecentsTable: FC = () => {
   };
 
   const setPageLimit = (limit: number) => {
+    updateQuery("page", 1);
     updateQuery("limit", limit);
   };
 
@@ -88,7 +90,9 @@ const RecentsTable: FC = () => {
 
   return (
     <div className={generateContainerClassName(width)}>
-      <div className={`${theme.background?.tertiary} px-4 py-2 rounded-t-2xl flex items-center justify-between`}>
+      <div
+        className={`${theme.background?.tertiary} px-4 py-2 rounded-t-2xl flex items-center justify-between`}
+      >
         <h3 className="text-lg font-semibold">Recents</h3>
         {data && (
           <Paginator
@@ -115,55 +119,20 @@ const RecentsTable: FC = () => {
         }}
         className={`${theme.background?.secondary} rounded-b-2xl p-0.5 relative`}
       >
-        {isLoading ? (
-          <div className={`absolute inset-0 flex items-center justify-center ${theme.background?.secondary} p-4`}>
-            Loading...
-          </div>
-        ) : data && data.recents && data.recents.length > 0 ? (
-          <>
-            <table
-              ref={tableRef}
-              className="w-full outline-1 outline-slate-400 rounded-b-2xl border-collapse overflow-auto"
-            >
-              <thead>
-                <tr>
-                  {Object.keys(data.recents[0]).map((key) => (
-                    <th className="p-1.5" key={key}>
-                      {key}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {data.recents.map((item, i) => (
-                  <tr
-                    className="outline-1 outline-slate-400 last:rounded-b-2xl"
-                    key={`${i}-${item["Song Name"]}-${item["User ID"]}`}
-                  >
-                    {Object.entries(item).map(([key, detail]) => (
-                      <td
-                        className="text-center p-1.5"
-                        key={`${key}-${detail}`}
-                      >
-                        {detail}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <Modal isOpen={showModal} onClose={handleFilter}>
-              <FilterForm
-                onSubmit={(query) => {
-                  addQuery(query);
-                  setShowModal(false);
-                }}
-              />
-            </Modal>
-          </>
-        ) : (
-          error && <p>{error}</p>
-        )}
+        <DataTable
+          data={data}
+          isLoading={isLoading}
+          error={error}
+          tableRef={tableRef}
+        />
+        <Modal isOpen={showModal} onClose={handleFilter}>
+          <FilterForm
+            onSubmit={(query) => {
+              addQuery(query);
+              setShowModal(false);
+            }}
+          />
+        </Modal>
       </div>
     </div>
   );
