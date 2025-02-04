@@ -83,17 +83,39 @@ export const getScreenSize = (width: number): ScreenSize => {
   }
 };
 
+/**
+ * A utility function that generates an array of page numbers using the given
+ * data length and the limit per page.
+ *
+ * Used by Paginator to display all pages to allow users to skip to a particular page
+ * @param length Total data length
+ * @param limit Limit of items per page
+ * @returns Array of total pages
+ */
 export const generatePages = (length: number, limit: number): number[] => {
   return [...Array(Math.ceil(length / limit)).keys()].map((k) => k + 1);
 };
 
+/**
+ * A utilty function that generates an array of visible pages to be displayed by the Paginator
+ * so that for extremely high number of pages, the pages don't overflow out of it.
+ * @param totalPages Total number of pages
+ * @param currPage Current page
+ * @returns Array of visible pages
+ */
 export const generateVisiblePages = (
   totalPages: number,
   currPage: number
 ): (number | string)[] => {
+  // If total pages <= 7, display all pages
   if (totalPages <= 7) return [...Array(totalPages)].map((_, i) => i + 1);
 
+  // If, curr page <= 4, display upto page 5 including next page of curr page, followed by "...",
+  // to indicate there are more pages after 5 till the last page.
   if (currPage <= 4) return [1, 2, 3, 4, 5, "...", totalPages];
+
+  // If, curr page >= total pages - 3 => remaining 5 pages, display 1 and "..." followed by
+  // 5 last pages to indicate there are pages between 1 and curr page - 1.
   if (currPage >= totalPages - 3)
     return [
       1,
@@ -105,6 +127,9 @@ export const generateVisiblePages = (
       totalPages,
     ];
 
+  // Else, display first page followed by "...", followed by 2 pages previous of curr page
+  // and 2 pages next of curr page, followed by "..." and the last page. "..." indicates
+  // there are pages between as well.
   return [
     1,
     "...",
