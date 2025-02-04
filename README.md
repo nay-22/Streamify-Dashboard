@@ -20,28 +20,28 @@ A PoC analytics dashboard for music streaming service displaying 3-key sections:
 
 ## Installation
 - ```
-    git clone https://github.com/nay-22/Streamify-Dashboard.git
+  git clone https://github.com/nay-22/Streamify-Dashboard.git
     ```
 - **Open two terminals**
   - On one terminal
     - ```
-        cd Streamify-backend
+      cd Streamify-Dashboard/Streamify-backend
         ```
     - ```
-        npm install
+      npm install
         ```
     - ```
-        npm run dev
+      npm run dev
         ```
   - On other terminal
     - ```
-        cd Streamify-frontend
+      cd Streamify-Dashboard/Streamify-frontend
         ```
     - ```
-        npm install
+      npm install
         ```
     - ```
-        npm run dev
+      npm run dev
         ```
 - Open the following link on browser
   [http://localhost:5173](http://localhost:5173)
