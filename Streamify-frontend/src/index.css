@@ -9,12 +9,12 @@ button:hover {
 }
 
 @theme {
-  --color-dark-bg-secondary: #2e2e2e;
   --color-dark-bg-primary: #212121;
+  --color-dark-bg-secondary: #2e2e2e;
   --color-dark-bg-tertiary: #4B4B4B;
 
-  --color-light-bg-secondary: #E5E5E5;
   --color-light-bg-primary: #F3F3F3;
+  --color-light-bg-secondary: #E5E5E5;
   --color-light-bg-tertiary: #C3C3C3;
 
   --color-dark-text-primary: #FFFFFF;
