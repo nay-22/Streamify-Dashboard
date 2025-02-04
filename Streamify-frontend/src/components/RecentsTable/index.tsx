@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, lazy, Suspense, useEffect, useRef, useState } from "react";
 import { RECENTS_URL } from "../../constants";
 import { useFetch, useTheme } from "../../hooks";
 import useStreamify from "../../hooks/useStreamify";
@@ -6,10 +6,12 @@ import { RecentStreams } from "../../types/ApiContractTypes";
 import Paginator from "../Paginator";
 
 import FilterFill from "/FilterFill.png";
-import FilterForm from "../forms/FilterForm";
 import Modal from "../Modal";
 import { RecentStreamsQuery } from "../../types";
 import DataTable from "./DataTable";
+import Loader from "../Loader";
+
+const FilterForm = lazy(() => import("../forms/FilterForm"));
 
 /**
  * RecentsTable: Functional component that fetches and displays detailed information on the
@@ -128,12 +130,14 @@ const RecentsTable: FC = () => {
           tableRef={tableRef}
         />
         <Modal isOpen={showModal} onClose={handleFilter}>
-          <FilterForm
-            onSubmit={(query) => {
-              addQuery(query);
-              setShowModal(false);
-            }}
-          />
+          <Suspense fallback={<Loader />}>
+            <FilterForm
+              onSubmit={(query) => {
+                addQuery(query);
+                setShowModal(false);
+              }}
+            />
+          </Suspense>
         </Modal>
       </div>
     </div>
