@@ -13,7 +13,7 @@ import Chart from "./Chart";
 const TopStreamChart = () => {
   const { data, isLoading, error, refetch } = useFetch<TopStreams>(TOP_5_STREAMS_URL);
   return (
-    <GenericCard title="Revenue Distribution" actions={<Actions onClick={refetch} />}>
+    <GenericCard title="Top Streams" actions={<Actions onClick={refetch} />}>
       <Chart data={data} isLoading={isLoading} error={error} />
     </GenericCard>
   );
