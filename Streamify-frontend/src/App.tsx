@@ -1,23 +1,20 @@
 import { useScreenSize } from "./hooks";
 import StreamifyProvider from "./context/providers/StreamifyProvider";
-import { useEffect, useState } from "react";
 import { ThemeMode } from "./types";
 import ThemeProvider from "./context/providers/ThemeProvider";
 import { lightTheme, darkTheme } from "./constants/ThemeConstants";
 import Dashboard from "./components/Dashboard";
 
 import "./App.css";
+import usePersistedState from "./hooks/usePersistedState";
 
 function App() {
   const { screen, windowSize } = useScreenSize();
 
-  const [themeMode, setThemeMode] = useState<ThemeMode>(
-    JSON.parse(localStorage.getItem("mode") || "dark") as ThemeMode
-  );
-
-  useEffect(() => {
-    localStorage.setItem("mode", JSON.stringify(themeMode));
-  }, [themeMode]);
+  const [themeMode, setThemeMode] = usePersistedState<ThemeMode>({
+    key: "mode",
+    initialState: ThemeMode.DARK,
+  });
 
   return (
     <StreamifyProvider value={{ screen, windowSize, themeMode, setThemeMode }}>
