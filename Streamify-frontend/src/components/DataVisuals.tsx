@@ -5,8 +5,8 @@ import useStreamify from "../hooks/useStreamify";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/scrollbar";
+import "swiper/swiper-bundle.css";
+
 
 /**
  * DataVisuals: Functional component that visualizes certain metrics using recharts components.

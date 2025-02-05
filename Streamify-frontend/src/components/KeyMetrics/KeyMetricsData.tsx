@@ -4,8 +4,8 @@ import { AnchorType, Metrics } from "../../types";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/scrollbar";
+import "swiper/swiper-bundle.css";
+
 import useStreamify from "../../hooks/useStreamify";
 import { FC } from "react";
 import withLoaderAndError from "../../hoc/withLoaderAndError";
