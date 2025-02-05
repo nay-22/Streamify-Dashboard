@@ -76,7 +76,7 @@ export type StreamifyContextConfig = {
     height: number;
   };
   themeMode: ThemeMode;
-  setThemeMode: Dispatch<SetStateAction<ThemeMode>>;
+  setThemeMode?: Dispatch<SetStateAction<ThemeMode>>;
 };
 
 export enum ThemeMode {

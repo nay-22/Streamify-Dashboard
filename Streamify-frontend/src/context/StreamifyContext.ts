@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { StreamifyContextConfig } from "../types";
+import { StreamifyContextConfig, ThemeMode } from "../types";
 import { getScreenSize } from "../utils";
 
 /**
@@ -11,6 +11,7 @@ const StreamifyContext = createContext<StreamifyContextConfig>({
     width: window.innerWidth,
     height: window.innerHeight,
   },
+  themeMode: ThemeMode.DARK,
 });
 
 export default StreamifyContext;

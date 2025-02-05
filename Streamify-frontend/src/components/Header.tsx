@@ -14,9 +14,11 @@ const Header: FC = () => {
   const { themeMode, setThemeMode } = useStreamify();
 
   const toggleDark = () => {
-    setThemeMode((prev) =>
-      prev === ThemeMode.DARK ? ThemeMode.LIGHT : ThemeMode.DARK
-    );
+    if (setThemeMode) {
+      setThemeMode((prev) =>
+        prev === ThemeMode.DARK ? ThemeMode.LIGHT : ThemeMode.DARK
+      );
+    }
   };
 
   const theme = useTheme();
